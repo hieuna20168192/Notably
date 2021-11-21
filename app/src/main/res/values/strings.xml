@@ -166,4 +166,6 @@
     <string name="mark_as_important">Mark as Important</string>
     <string name="todo_moved_to">To-Do Moved to</string>
     <string name="there_are_no_todos_in_this_list">There is no to-dos in this list</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
