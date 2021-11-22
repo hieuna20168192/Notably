@@ -4,42 +4,51 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item android:id="@id/menu_home"
+        <item
+            android:id="@id/home_dest"
             android:icon="@drawable/home_icon"
-            android:title="@string/home"/>
+            android:title="@string/home" />
 
-        <item android:id="@id/menu_reminders"
+        <item
+            android:id="@id/reminders_dest"
             android:icon="@drawable/icon_alarm"
-            android:title="@string/reminders"/>
+            android:title="@string/reminders" />
 
-        <item android:id="@id/menu_archive"
+        <item
+            android:id="@id/archive_dest"
             android:icon="@drawable/icon_archive"
-            android:title="@string/archive"/>
+            android:title="@string/archive" />
 
-        <item android:id="@id/menu_trash"
+        <item
+            android:id="@id/trash_dest"
             android:icon="@drawable/trash_icon"
-            android:title="@string/trash"/>
+            android:title="@string/trash" />
 
-        <item android:id="@id/menu_notification"
+        <item
+            android:id="@id/menu_notification"
             android:icon="@drawable/icon_bell"
-            android:title="@string/notifications"/>
+            android:title="@string/notifications" />
 
-        <item android:id="@id/menu_widget"
+        <item
+            android:id="@id/menu_widget"
             android:icon="@drawable/icon_widget"
-            android:title="@string/widget"/>
+            android:title="@string/widget" />
 
 
-        <item android:id="@id/menu_rate"
+        <item
+            android:id="@id/menu_rate"
             android:icon="@drawable/star_icon"
-            android:title="@string/rate_us"/>
+            android:title="@string/rate_us" />
 
-        <item android:id="@id/menu_settings"
+        <item
+            android:id="@id/menu_settings"
             android:icon="@drawable/gear_icon"
-            android:title="@string/settings"/>
+            android:title="@string/settings" />
 
-        <item android:id="@id/menu_about"
+        <item
+            android:id="@id/menu_about"
             android:icon="@drawable/profile_icon"
-            android:title="@string/about"/>
+            android:title="@string/about" />
     </group>
 
 </menu>

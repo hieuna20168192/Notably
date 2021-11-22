@@ -1,15 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav"
-    app:startDestination="@id/noteFragment">
+    app:startDestination="@id/home_dest">
 
     <fragment
-        android:id="@+id/noteFragment"
+        android:id="@+id/note_dest"
         android:name="com.example.notably.ui.home.note.NoteFragment"
         android:label="NoteFragment" />
     <fragment
-        android:id="@+id/todosFragment"
+        android:id="@+id/todos_dest"
         android:name="com.example.notably.ui.home.todo.TodosFragment"
         android:label="TodosFragment" />
+    <fragment
+        android:id="@+id/archive_dest"
+        android:name="com.example.notably.ui.archive.ArchiveFragment"
+        android:label="fragment_archive"
+        tools:layout="@layout/fragment_archive" />
+    <fragment
+        android:id="@+id/home_dest"
+        android:name="com.example.notably.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/reminders_dest"
+        android:name="com.example.notably.ui.reminders.RemindersFragment"
+        android:label="fragment_reminders"
+        tools:layout="@layout/fragment_reminders" />
+    <fragment
+        android:id="@+id/trash_dest"
+        android:name="com.example.notably.ui.trash.TrashFragment"
+        android:label="fragment_trash"
+        tools:layout="@layout/fragment_trash" />
 </navigation>
