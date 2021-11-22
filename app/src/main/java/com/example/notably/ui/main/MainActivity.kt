@@ -1,10 +1,7 @@
 package com.example.notably.ui.main
 
 import androidx.activity.viewModels
-import androidx.fragment.app.FragmentContainerView
 import androidx.navigation.NavController
-import androidx.navigation.NavHost
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.notably.R
