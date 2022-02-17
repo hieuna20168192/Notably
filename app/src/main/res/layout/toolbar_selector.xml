@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="47dp"
         android:background="?color_light_separate"
+        android:clickable="true"
         android:orientation="horizontal"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"

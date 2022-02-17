@@ -142,8 +142,8 @@
     <string name="save_note_before_speech">Make sure to save note before speech</string>
     <string name="save_note_before_open_reader_mode">Make sure to save note before open reader mode</string>
     <string name="notes">Notes</string>
-    <string name="todos">To-dos</string>
-    <string name="all_todos">All to-dos</string>
+    <string name="todos">Tasks</string>
+    <string name="all_todos">All tasks</string>
     <string name="todo_title">To-do</string>
     <string name="uncompleted">Uncompleted</string>
     <string name="completed">Completed</string>

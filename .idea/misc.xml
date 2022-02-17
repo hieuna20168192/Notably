@@ -5,18 +5,69 @@
       <map>
         <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/drawable/button_lg.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/drawable/button_mini.xml" value="0.2520833333333333" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/drawable/button_mini_alternative.xml" value="0.21944444444444444" />
         <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/drawable/ic_launcher_background.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/drawable/input_round_background.xml" value="0.21979166666666666" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/drawable/todo_checkbox_selector.xml" value="0.1921875" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/activity_add_note.xml" value="0.228125" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/activity_edit_category.xml" value="0.28703703703703703" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/activity_filtered_notes.xml" value="0.264" />
         <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/activity_main2.xml" value="0.2359375" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/activity_search_note.xml" value="0.20677083333333332" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/activity_todo_create_list.xml" value="0.264" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/activity_todo_list.xml" value="0.16203703703703703" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/activity_view_attach_image.xml" value="0.1712962962962963" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/activity_view_attached_video.xml" value="0.13055555555555556" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/activity_view_todo.xml" value="0.26256983240223464" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/add_category_bottom_sheet_modal.xml" value="0.2" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/add_todo_bottom_sheet_modal.xml" value="0.16" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/archive_note_action_bottom_sheet_modal.xml" value="0.2125" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/archived_note_view_bottom_sheet_modal.xml" value="0.264" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/attach_image_bottom_sheet_modal.xml" value="0.176" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/categories_bottom_sheet_modal.xml" value="0.26927083333333335" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/custom_controller.xml" value="0.13055555555555556" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/edit_category_bottom_sheet_modal.xml" value="0.264" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/export_note_as_dialog.xml" value="0.4" />
         <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/fragment_archive.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/fragment_home.xml" value="0.18229166666666666" />
-        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/fragment_note.xml" value="0.10729166666666666" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/fragment_note.xml" value="0.264" />
         <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/fragment_reminders.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/fragment_todo_lists_bottom_sheet_modal.xml" value="0.264" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/fragment_todo_move_to_bottom_sheet_modal.xml" value="0.17604166666666668" />
         <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/fragment_todos.xml" value="0.11354166666666667" />
         <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/fragment_trash.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/home_more_options_bottom_sheet_modal.xml" value="0.2" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/item_category_filter.xml" value="0.264" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/item_note_type_list.xml" value="0.2" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/layout_choose_category.xml" value="0.2125" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/layout_item_category.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/layout_item_choose_category.xml" value="0.2" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/layout_item_note.xml" value="0.264" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/layout_item_note_archive.xml" value="0.21302083333333333" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/layout_item_note_trash.xml" value="0.11614583333333334" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/layout_item_todo.xml" value="0.264" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/layout_item_todo_list.xml" value="0.12222222222222222" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/more_actions_bottom_sheet_modal.xml" value="0.4" />
         <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/navigation_header.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/note_actions.xml" value="0.2421875" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/note_actions_bottom_sheet_modal.xml" value="0.2" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/placeholder_note_empty.xml" value="0.4" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/placeholder_todo_empty.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/popup_attach_link.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/popup_confirm.xml" value="0.23333333333333334" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/popup_reminder.xml" value="0.21614583333333334" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/popup_sort_by.xml" value="0.2" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/reminder_bottom_sheet_modal.xml" value="0.21614583333333334" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/todo_actions.xml" value="0.2" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/todo_more_options_bottom_sheet_modal.xml" value="0.264" />
         <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/toolbar_selector.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/layout/trash_note_action_bottom_sheet_modal.xml" value="0.17037037037037037" />
         <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/menu/bottom_navigation.xml" value="0.2421875" />
         <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/menu/navigation_drawer.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/xml/provider_paths.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/StudioProjects/final-project/Notably/app/src/main/res/xml/xml.xml" value="0.1" />
       </map>
     </option>
   </component>

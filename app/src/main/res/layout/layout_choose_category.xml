@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="category"
+            type="com.example.notably.repos.entities.Category" />
+
+        <variable
+            name="listener"
+            type="com.example.notably.adapter.ChooseCategoryAdapter.ChooseCategoryListener" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+    </data>
+
+    <RelativeLayout
+        android:id="@id/item_category_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_mini_alternative"
+        android:onClick="@{(view) -> listener.onCategoryClicked(category, pos)}"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@id/item_category_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:hint="Category Title"
+            android:text="@{category.title}"
+            android:textColor="?color_dark"
+            android:textColorHint="?color_dark"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText,RelativeOverlap" />
+
+    </RelativeLayout>
+</layout>

@@ -1,61 +1,219 @@
 package com.example.notably.ui.home.todo
 
+import android.app.Activity
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.annotation.RequiresApi
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notably.R
+import com.example.notably.adapter.TasksAdapter
+import com.example.notably.base.BaseFragment
+import com.example.notably.databinding.FragmentTodosBinding
+import com.example.notably.extensions.Helper
+import com.example.notably.repos.entities.Task
+import com.example.notably.ui.home.HomeViewModel
+import com.example.notably.ui.sheets.AddTodoBottomSheetModal
+import com.example.notably.ui.sheets.TodoListsBottomSheetModal
+import com.example.notably.ui.sheets.TodoListsBottomSheetModal.Companion.REQUEST_UPDATE_LIST_CODE
+import com.example.notably.ui.sheets.TodoMoreOptionsBottomSheetModal
+import com.example.notably.ui.sheets.TodoMoveToBottomSheetModal
 import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+@RequiresApi(Build.VERSION_CODES.M)
+@AndroidEntryPoint
+class TodosFragment : BaseFragment<HomeViewModel, FragmentTodosBinding>(),
+    TasksAdapter.TaskListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [TodosFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class TodosFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    override val layoutId: Int = R.layout.fragment_todos
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override val viewModel: HomeViewModel by activityViewModels()
+
+    private val tasksAdapter: TasksAdapter = TasksAdapter(this)
+
+    private val bundle = Bundle()
+
+    private var navigationHide = false
+
+    override fun initComponents() {
+        initTasksRcl()
+        initTasksObserver()
+        initTasks()
+    }
+
+    private fun initTasks() {
+        viewModel.getTasks()
+    }
+
+    private fun initTasksObserver() {
+        viewModel.tasks.observe(viewLifecycleOwner) {
+            tasksAdapter.submitList(it)
+            binding.todosEmptyPlaceholder.root.visibility =
+                if (it.isNullOrEmpty()) View.VISIBLE else View.GONE
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_todos, container, false)
+    private fun initTasksRcl() {
+        binding.todosRecyclerview.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = tasksAdapter
+        }
+    }
+
+    override fun initListeners() {
+        initAddTodoListener()
+        initScrollTasksListener()
+        initTodoListsListener()
+        initMoreOptionsListener()
+    }
+
+    private fun initMoreOptionsListener() {
+        binding.moreOptions.setOnClickListener {
+            val todoMoreOptionsBottomSheetModal = TodoMoreOptionsBottomSheetModal()
+            todoMoreOptionsBottomSheetModal.setTargetFragment(this, REQUEST_MORE_OPTIONS_CODE)
+            todoMoreOptionsBottomSheetModal.show(
+                requireFragmentManager(),
+                TodoMoreOptionsBottomSheetModal::class.simpleName
+            )
+        }
+    }
+
+    private fun initTodoListsListener() {
+        binding.todoLists.setOnClickListener {
+            requestViewTodoLists()
+        }
+    }
+
+    private fun requestViewTodoLists() {
+        val todoListsBottomSheetModal = TodoListsBottomSheetModal()
+        todoListsBottomSheetModal.setTargetFragment(this, REQUEST_TODO_LISTS_CODE)
+        todoListsBottomSheetModal.show(
+            requireFragmentManager(),
+            TodoListsBottomSheetModal::class.simpleName
+        )
+    }
+
+    private fun initScrollTasksListener() {
+        binding.nestedScrollview.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+            if (scrollY >= oldScrollY) {
+                hideBottomOptions()
+            } else {
+                showBottomOptions()
+            }
+        }
+    }
+
+    private fun showBottomOptions() {
+        if (!navigationHide) return
+        Helper.show_bottom(binding.moreOptions)
+        Helper.show_bottom(binding.todoLists)
+        navigationHide = false
+    }
+
+    private fun hideBottomOptions() {
+        if (navigationHide) return
+        Helper.hide_bottom(binding.moreOptions)
+        Helper.hide_bottom(binding.todoLists)
+        navigationHide = true
+    }
+
+    private fun initAddTodoListener() {
+        binding.addTodo.setOnClickListener {
+            val addTodoBottomSheetModal = AddTodoBottomSheetModal()
+            addTodoBottomSheetModal.setTargetFragment(this, REQUEST_ADD_TODO_CODE)
+            addTodoBottomSheetModal.show(
+                requireFragmentManager(),
+                AddTodoBottomSheetModal::class.simpleName
+            )
+        }
+    }
+
+    override fun onTaskClicked(task: Task, position: Int) {
+        val intent = Intent(context, ViewTodoActivity::class.java)
+        intent.apply {
+            putExtra("modifier", true)
+            putExtra("todo", task)
+        }
+        startActivityForResult(intent, REQUEST_VIEW_TODO_CODE)
+    }
+
+    override fun onTaskLongClicked(task: Task, position: Int): Boolean {
+        return false
+    }
+
+    override fun onTaskStateClicked(task: Task, position: Int, checked: Boolean) {
+        task.state = checked
+        requestUpdateTask(task)
+    }
+
+    private fun requestUpdateTask(task: Task) {
+        viewModel.saveTask(task)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when {
+            requestViewSuccess(requestCode, resultCode) -> {
+                when {
+                    isUpdateAction(data) -> {
+                        viewModel.getTasks()
+                    }
+                    isDeleteAction(data) -> {
+                        viewModel.getTasks()
+                    }
+                    isMarkAction(data) -> {
+                        viewModel.getTasks()
+                    }
+                }
+            }
+            requestTodosListSuccess(requestCode, resultCode) -> {
+                viewModel.getTasks()
+            }
+            requestCode == REQUEST_MORE_OPTIONS_CODE -> {
+                when (resultCode) {
+                    TodoMoreOptionsBottomSheetModal.REQUEST_DELETE_ALL_COMPLETED_TASKS_CODE -> {
+
+                    }
+                    TodoMoreOptionsBottomSheetModal.CHOOSE_SORT_BY_DEFAULT -> {
+                        viewModel.getTasks()
+                    }
+                    TodoMoreOptionsBottomSheetModal.CHOOSE_SORT_BY_A_TO_Z -> {
+                        viewModel.getTasks("a_z")
+                    }
+                    TodoMoreOptionsBottomSheetModal.CHOOSE_SORT_BY_Z_TO_A -> {
+                        viewModel.getTasks("z_a")
+                    }
+                }
+            }
+        }
+    }
+
+    private fun requestTodosListSuccess(requestCode: Int, resultCode: Int): Boolean {
+        return requestCode == REQUEST_TODO_LISTS_CODE && resultCode == REQUEST_UPDATE_LIST_CODE
+    }
+
+    private fun isMarkAction(data: Intent?): Boolean {
+        return data != null && data.getIntExtra("requestCode", 0) == 2
+    }
+
+    private fun requestViewSuccess(requestCode: Int, resultCode: Int): Boolean {
+        return requestCode == REQUEST_VIEW_TODO_CODE && resultCode == Activity.RESULT_OK
+    }
+
+    private fun isDeleteAction(data: Intent?): Boolean {
+        return data != null && data.getIntExtra("requestCode", 0) == 1
+    }
+
+    private fun isUpdateAction(data: Intent?): Boolean {
+        return data != null && data.getIntExtra("requestCode", 0) == 3
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TodosFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TodosFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        const val REQUEST_VIEW_TODO_CODE = 2
+        const val REQUEST_ADD_TODO_CODE = 1
+        const val REQUEST_MORE_OPTIONS_CODE = 4
+        const val REQUEST_TODO_LISTS_CODE = 5
     }
 }

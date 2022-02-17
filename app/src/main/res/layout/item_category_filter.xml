@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="category"
+            type="com.example.notably.repos.entities.Category" />
+
+        <variable
+            name="listener"
+            type="com.example.notably.adapter.ChipCategoryAdapter.ChipCategoryListener" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+    </data>
+
+    <LinearLayout
+        android:id="@id/item_category_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/input_round_background"
+        android:onClick="@{(view) -> listener.onCategoryClicked(category, pos)}"
+        android:orientation="horizontal"
+        android:paddingStart="10dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="6dp"
+        android:textSize="14sp">
+
+        <TextView
+            android:id="@id/item_category_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="Category Title"
+            android:text="@{category.title}"
+            android:textAlignment="center"
+            android:textColor="?color_dark"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+</layout>

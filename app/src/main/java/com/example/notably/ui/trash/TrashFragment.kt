@@ -1,60 +1,117 @@
 package com.example.notably.ui.trash
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.Window
+import android.view.WindowManager
+import android.widget.TextView
+import androidx.core.view.isGone
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notably.R
+import com.example.notably.adapter.TrashNoteAdapter
+import com.example.notably.base.BaseFragment
+import com.example.notably.databinding.FragmentTrashBinding
+import com.example.notably.repos.entities.TrashNote
+import com.example.notably.ui.main.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+@AndroidEntryPoint
+class TrashFragment : BaseFragment<TrashViewModel, FragmentTrashBinding>(),
+    TrashNoteAdapter.TrashNoteListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [TrashFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class TrashFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    override val layoutId: Int = R.layout.fragment_trash
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override val viewModel: TrashViewModel by activityViewModels()
+
+    private val trashNoteAdapter = TrashNoteAdapter(this)
+
+    private val bundle = Bundle()
+
+    override fun initComponents() {
+        initTrashNotesRcl()
+        initTrashNotesObserver()
+        initTrashNotes()
+    }
+
+    private fun initTrashNotes() {
+        viewModel.getTrashNotes()
+    }
+
+    private fun initTrashNotesObserver() {
+        viewModel.trashNotes.observe(viewLifecycleOwner) {
+            trashNoteAdapter.submitList(it)
+            binding.noItems.isGone = it.isNotEmpty()
+            (requireActivity() as MainActivity).extraAction.isEnabled = it.isNotEmpty()
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_trash, container, false)
+    private fun initTrashNotesRcl() {
+        binding.notesRecyclerview.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = trashNoteAdapter
+        }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TrashFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TrashFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun initListeners() {
+        initDeleteAllTrashsListener()
+    }
+
+    private fun initDeleteAllTrashsListener() {
+        (requireActivity() as MainActivity).extraAction.setOnClickListener {
+            requestDeleteAll()
+        }
+    }
+
+    private fun requestDeleteAll() {
+        val confirmDialog = Dialog(requireContext())
+
+        // Set style for dialog
+        confirmDialog.apply {
+            requestWindowFeature(Window.FEATURE_NO_TITLE)
+            setContentView(R.layout.popup_confirm)
+            setCancelable(true)
+            setOnCancelListener { dismiss() }
+            window?.apply {
+                setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                setLayout(
+                    WindowManager.LayoutParams.MATCH_PARENT,
+                    WindowManager.LayoutParams.MATCH_PARENT
+                )
             }
+        }
+
+        val confirmHeader = confirmDialog.findViewById<TextView>(R.id.confirm_header)
+        val confirmText = confirmDialog.findViewById<TextView>(R.id.confirm_text)
+        val confirmAllow = confirmDialog.findViewById<TextView>(R.id.confirm_allow)
+        val confirmCancel = confirmDialog.findViewById<TextView>(R.id.confirm_deny)
+
+        confirmHeader.text = getString(R.string.delete_all_notes)
+        confirmText.text = getString(R.string.delete_all_notes_description)
+        confirmAllow.setOnClickListener {
+            viewModel.deleteAllTrashNotes()
+            confirmDialog.dismiss()
+        }
+
+        confirmCancel.setOnClickListener { confirmDialog.dismiss() }
+        confirmDialog.show()
+    }
+
+    override fun onTrashNoteClicked(note: TrashNote, pos: Int) {
+
+    }
+
+    override fun onTrashNoteLongClicked(note: TrashNote, pos: Int): Boolean {
+        bundle.putSerializable("trash_note_data", note)
+        val trashNoteActionsBottomSheetModal = TrashNoteActionBottomSheetModal()
+        trashNoteActionsBottomSheetModal.arguments = bundle
+        trashNoteActionsBottomSheetModal.setTargetFragment(this, 3)
+        trashNoteActionsBottomSheetModal.show(
+            requireFragmentManager(),
+            TrashNoteActionBottomSheetModal::class.simpleName
+        )
+        return false
     }
 }

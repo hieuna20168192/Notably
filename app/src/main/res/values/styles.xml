@@ -1,0 +1,19 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/color_white</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/color_theme</item>
+        <item name="color_light">@color/color_white</item>
+        <item name="color_background">@color/colorBackgroundLight</item>
+        <item name="color_lighter">@color/color_light_white</item>
+        <item name="color_dark">@color/color_dark</item>
+        <item name="color_grey">@color/color_grey</item>
+        <item name="color_light_separate">@color/color_white</item>
+        <item name="divider_inline">@drawable/divider_inline_light</item>
+        <item name="color_icon">@color/color_grey_lighter</item>
+        <item name="item_drawer">@color/navigation_drawer_item_color_light</item>
+        <item name="android:windowActivityTransitions" tools:ignore="NewApi">true</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+    </style>
+</resources>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="task"
+            type="com.example.notably.repos.entities.Task" />
+
+        <variable
+            name="listener"
+            type="com.example.notably.adapter.TasksAdapter.TaskListener" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@id/item_todo_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:onClick="@{(view) -> listener.onTaskClicked(task, pos)}"
+        android:onLongClick="@{(view) -> listener.onTaskLongClicked(task, pos)}"
+        app:cardBackgroundColor="?color_light_separate"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            tools:ignore="UselessParent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".9"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@id/item_todo_checkbox"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/todo_checkbox_selector"
+                    android:backgroundTint="?color_dark"
+                    android:button="@null"
+                    android:checked="@{task.state}" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@id/item_todo_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Todo Title"
+                        android:text="@{task.title}"
+                        android:textColor="?color_dark"
+                        android:textSize="15sp"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:id="@id/item_todo_details"
+                        textOrGone="@{task.details}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:hint="Todo Details"
+                        android:text="Todo Details"
+                        android:textColor="?color_dark"
+                        android:textSize="13sp"
+                        android:visibility="gone"
+                        tools:ignore="HardcodedText" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@id/item_todo_important"
+                isGone="@{!task.priority}"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_weight=".1"
+                android:padding="4dp"
+                android:src="@drawable/icon_important_red"
+                tools:ignore="ContentDescription" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
