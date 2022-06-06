@@ -6,7 +6,7 @@ import com.example.notably.repos.dao.NoteDao
 import com.example.notably.repos.entities.*
 
 @Database(
-    entities = [Note::class, Category::class, Task::class, TodosList::class, TrashNote::class, ArchiveNote::class],
+    entities = [Note::class, Category::class, Task::class, TodosList::class, TrashNote::class, ArchiveNote::class, Notification::class],
     version = 1,
     exportSchema = false
 )

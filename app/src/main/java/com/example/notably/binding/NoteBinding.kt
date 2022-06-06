@@ -7,8 +7,8 @@ import androidx.databinding.BindingAdapter
 
 @BindingAdapter("textOrGone")
 fun textOrGone(textView: TextView, value: String?) {
-    if (value.isNullOrEmpty()) textView.isGone = true
-    else textView.text = value
+    textView.isGone = value.isNullOrEmpty()
+    textView.text = value
 }
 
 @BindingAdapter("isGone")

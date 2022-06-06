@@ -33,4 +33,19 @@
         android:name="com.example.notably.ui.trash.TrashFragment"
         android:label="fragment_trash"
         tools:layout="@layout/fragment_trash" />
+
+    <fragment
+        android:id="@+id/notification_dest"
+        android:name="com.example.notably.ui.notification.NotificationsFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notifications" />
+
+    <action
+        android:id="@+id/global_action"
+        app:destination="@id/home_dest" />
+
+    <action
+        android:id="@+id/global_action_notification"
+        app:destination="@id/notification_dest"
+        app:launchSingleTop="true" />
 </navigation>

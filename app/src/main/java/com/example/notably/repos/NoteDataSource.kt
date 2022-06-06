@@ -32,4 +32,7 @@ interface NoteDataSource {
     suspend fun insertArchiveNote(archiveNote: ArchiveNote)
     suspend fun getArchiveNotes(): List<ArchiveNote>
     suspend fun deleteArchiveNotes(archiveNote: ArchiveNote)
+    suspend fun insertNotification(notification: Notification)
+    suspend fun getNotifications(): List<Notification>
+    suspend fun deleteAllNotifications()
 }

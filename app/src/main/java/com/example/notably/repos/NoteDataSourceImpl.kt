@@ -125,6 +125,18 @@ class NoteDataSourceImpl @Inject constructor(
     override suspend fun deleteArchiveNotes(archiveNote: ArchiveNote) {
         noteDao.deleteArchiveNotes(archiveNote)
     }
+
+    override suspend fun insertNotification(notification: Notification) {
+        noteDao.insertNotification(notification)
+    }
+
+    override suspend fun getNotifications(): List<Notification> {
+        return noteDao.getNotifications()
+    }
+
+    override suspend fun deleteAllNotifications() {
+        noteDao.deleteAllNotifications()
+    }
 }
 
 class FakeDataSourceImpl @Inject constructor() : NoteDataSource {
@@ -246,6 +258,18 @@ class FakeDataSourceImpl @Inject constructor() : NoteDataSource {
     }
 
     override suspend fun deleteArchiveNotes(archiveNote: ArchiveNote) {
+        delay(200L)
+    }
+
+    override suspend fun insertNotification(notification: Notification) {
+        delay(200L)
+    }
+
+    override suspend fun getNotifications(): List<Notification> {
+        return emptyList()
+    }
+
+    override suspend fun deleteAllNotifications() {
         delay(200L)
     }
 }

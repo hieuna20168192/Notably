@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="notification"
+            type="com.example.notably.repos.entities.Notification" />
+
+        <variable
+            name="listener"
+            type="com.example.notably.adapter.NotificationAdapter.NotificationListener" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+    </data>
+
+    <LinearLayout
+        android:id="@id/item_notification_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/item_background"
+        android:gravity="center_vertical"
+        android:onClick="@{(view) -> listener.onNotificationClicked(notification, pos)}"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <View
+            android:id="@id/notification_is_read"
+            isGone="@{notification.read}"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/read_mark"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@id/notification_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{notification.title}"
+                android:textColor="?color_dark"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="@tools:sample/lorem" />
+
+            <TextView
+                android:id="@id/notification_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:maxLines="4"
+                android:text="@{notification.content}"
+                android:textColor="?color_dark"
+                android:textSize="12sp"
+                tools:text="@tools:sample/lorem/random" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

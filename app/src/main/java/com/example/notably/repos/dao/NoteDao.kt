@@ -111,4 +111,13 @@ interface NoteDao {
 
     @Delete
     suspend fun deleteArchiveNotes(archiveNote: ArchiveNote)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertNotification(notification: Notification)
+
+    @Query("SELECT * FROM notification ORDER BY created_at DESC")
+    suspend fun getNotifications(): List<Notification>
+
+    @Query("DELETE FROM notification")
+    suspend fun deleteAllNotifications()
 }

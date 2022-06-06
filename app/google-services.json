@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "971322808995",
+    "project_id": "notably-18b0b",
+    "storage_bucket": "notably-18b0b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:971322808995:android:0217ec3e4a550a0251bd16",
+        "android_client_info": {
+          "package_name": "com.example.notably"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "971322808995-qh7ablsffbp2elbq6n77qtc5tnr502oi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHI5GuheNvF1iHFdl-2zmgpAJRDZUjUQU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "971322808995-qh7ablsffbp2elbq6n77qtc5tnr502oi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,19 +1,32 @@
 package com.example.notably.extensions;
 
+import static android.content.Context.NOTIFICATION_SERVICE;
+
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.view.View;
 import android.view.WindowManager;
 
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.app.NotificationCompat;
 
 import com.example.notably.R;
+import com.example.notably.repos.entities.Notification;
+import com.example.notably.ui.notification.NotificationPreviewActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 public class Helper {
     /**
@@ -126,5 +139,40 @@ public class Helper {
                 .translationY(0)
                 .setDuration(300)
                 .start();
+    }
+
+    public static void showNotification(Context context, Notification notification, Bitmap bitmap) {
+        Intent intent = NotificationPreviewActivity.Companion.getMainIntent(context, notification, true);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, (int) System.currentTimeMillis(), intent, 0);
+        String channelId = "channel";
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId);
+        builder.setContentTitle(notification.getTitle());
+        builder.setContentText(notification.getContent());
+        builder.setSmallIcon(R.drawable.home_icon);
+        builder.setDefaults(android.app.Notification.DEFAULT_LIGHTS);
+        builder.setContentIntent(pendingIntent);
+        builder.setChannelId(channelId);
+        builder.setAutoCancel(true);
+
+        builder.setPriority(android.app.Notification.PRIORITY_HIGH);
+        Bitmap largeIcon = BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher_round);
+        NotificationCompat.BigPictureStyle bigPictureStyle = new NotificationCompat.BigPictureStyle()
+                .bigPicture(largeIcon)
+                .bigLargeIcon(null);
+        builder.setLargeIcon(largeIcon);
+//        builder.setStyle(new NotificationCompat.BigTextStyle().bigText(notification.getContent()));
+//        if (bitmap != null) {
+//            builder.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(bitmap).setSummaryText(notification.getContent()));
+//        }
+        builder.setStyle(bigPictureStyle);
+
+        // display push notification
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(channelId, channelId, NotificationManager.IMPORTANCE_HIGH);
+            Objects.requireNonNull(notificationManager).createNotificationChannel(channel);
+        }
+        int unique_id = (int) System.currentTimeMillis();
+        Objects.requireNonNull(notificationManager).notify(unique_id, builder.build());
     }
 }

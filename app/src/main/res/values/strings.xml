@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Noted</string>
+    <string name="app_name">Notably</string>
     <string name="search_notes">Search notes</string>
     <string name="save">Save</string>
     <string name="type_a_title_here">Type a title here</string>
@@ -168,4 +168,7 @@
     <string name="there_are_no_todos_in_this_list">There is no to-dos in this list</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="message_subscribed">Subscribed to topic</string>
+    <string name="message_subscribe_failed">Failed to subscribe to topic</string>
+    <string name="note_channel">note_channel</string>
 </resources>
